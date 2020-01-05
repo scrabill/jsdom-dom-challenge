@@ -32,11 +32,18 @@ plus.addEventListener("click", function(event) {
 // As a user, I can 'like' an individual number of the counter.
 // I should see count of the number of 'likes' associated with that number.
 let likedCounts = [];
-let numCurrentCount = 0;
+let numCurrentCount = 1;
 
 heart.addEventListener("click", function(event) {
-  console.log(`The current time is: ${currentCount}`);
-  likedCounts.push(currentCount);
+  const li = document.createElement("li");
+
+
+  li.innerText = `Number ${currentCount} has been liked ${numCurrentCount} times`;
+  ul.appendChild(li);
+
+
+  // console.log(`The current time is: ${currentCount}`);
+  // likedCounts.push(currentCount);
 
   // console.log(`The current time is: ${currentCount}`);
   // numCurrentCount = 0;
