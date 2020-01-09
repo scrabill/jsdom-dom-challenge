@@ -1,4 +1,4 @@
-let timer = window.setInterval(printTime, 1000);
+let timer = window.setInterval(printTime, 3000);
 const counter = document.getElementById("counter");
 let currentCount = 0
 
@@ -33,24 +33,52 @@ plus.addEventListener("click", function(event) {
 // I should see count of the number of 'likes' associated with that number.
 let likedCounts = [];
 let numCurrentCount = 1;
+let object = {}
 
 heart.addEventListener("click", function(event) {
   const li = document.createElement("li");
 
+  console.log(object)
 
-  li.innerText = `Number ${currentCount} has been liked ${numCurrentCount} times`;
-  ul.appendChild(li);
+  // 1:1, 2:1, 3:10,
+
+   // {
+   //   1:1,
+   //   2:1,
+   //   3:10
+   // }\
+
+   // Why doesn't dot notation work????
+
+  if (object[currentCount]) {
+    object[currentCount]+= 1;
+  } else {
+    object[currentCount] = 1;
+  }
+
+  li.id = currentCount;
+  li.innerText = `Number ${currentCount} has been liked ${object[currentCount]} times`;
+
+  if (document.getElementById(currentCount)) {
+    let element = document.getElementById(currentCount)
+    element.innerText = `Number ${currentCount} has been liked ${object[currentCount]} times`
+  } else {
+    ul.appendChild(li);
+  }
 
 
+
+  //
+  //
   // console.log(`The current time is: ${currentCount}`);
   // likedCounts.push(currentCount);
-
+  //
   // console.log(`The current time is: ${currentCount}`);
   // numCurrentCount = 0;
   // const li = document.createElement("li");
   //
   // if (likedCounts.includes(currentCount) == false) {
-  //   numCurrentCount ++;
+  //   numCurrentCount++;
   //   likedCounts.push(currentCount);
   //   li.innerText = `Number ${currentCount} has been liked ${numCurrentCount} times`;
   //   ul.appendChild(li)
@@ -59,7 +87,7 @@ heart.addEventListener("click", function(event) {
   //   likedCounts.push(currentCount);
   //   for (i = 0; i < likedCounts.length; i++) {
   //     if (likedCounts[i] == currentCount) {
-  //       numCurrentCount ++;
+  //       numCurrentCount++;
   //     }
   //     console.log(numCurrentCount);
   //     li.innerText = `Number ${currentCount} has been liked ${numCurrentCount} times`;
